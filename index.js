@@ -1,21 +1,24 @@
-var express = require('express');
-var bodyParser = require('body-parser');
+// module import
+const express = require("express");
+const bodyParser = require("body-parser");
+const signUpRoute = require("./routes/sign-up");
+const loginRoute = require("./routes/login");
+const deleteUserRoute = require("./routes/delete-user");
+// personal import
+const authentification = require("./auth/authverif");
 
-var app = express()
+//init
+const app = express();
+const jsonParse = bodyParser.json();
+const urlParse = bodyParser.urlencoded({ extended: true })
 
-// parse application/x-www-form-urlencoded
-.use(bodyParser.urlencoded({ extended: false }))
 
-// parse application/json
-.use(bodyParser.json())
 
-.use(function (req, res) {
-  res.setHeader('Content-Type', 'text/plain')
-  res.write('you posted:\n')
-  res.end(JSON.stringify(req.body, null, 2))
-})
+app.post("/signup", urlParse, signUpRoute);
+// app.post("/login", loginRoute);
+// app.post("/login/:id/", deleteUserRoute);
 
-.listen(3000,()=>{
-    console.clear();
-    console.log("Here we go");
-})
+app.listen(3000, () => {
+  console.clear();
+  console.log("Here we go");
+});
