@@ -65,6 +65,10 @@ const Licence = sequelize.define("Licence", {
     type: Sequelize.STRING,
     allowNull: false
   },
+  status :{
+    type: Sequelize.STRING,
+    allowNull: false
+  },
   data: {
     type: Sequelize.JSONB,
   }
@@ -86,6 +90,7 @@ Licence.sync({ force: true }).then(() => {
     liscence: "123456789-123456789-123456789",
     owner_id: "1",
     limit_time_validity: "22-10-2019ddd",
+    status:"active",
     data: {
       preferedPersonality: "Lady Diana",
       birthDate : "1 juillet 1961",

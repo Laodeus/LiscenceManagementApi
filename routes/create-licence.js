@@ -36,6 +36,7 @@ const createLiscence = async (req, res, next) => {
       .plus({ years: 1 })
       .endOf("day")
       .toISO(),
+    status : "active",
     data: {}
   };
 
