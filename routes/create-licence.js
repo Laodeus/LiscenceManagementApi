@@ -1,35 +1,35 @@
+const uuidv4 = require('uuid/v4');
+const { DateTime } = require("luxon");
+
 const secquelizeConnection = require("./../query/database-connection");
 const autenticate = require("./../auth/authverif");
 const passphrase = process.env.passphrase || "maPassphraseSuperSecure";
 
 const createLiscence = async (req, res, next) => {
-  id = req.body.id || null;
-  email = req.body.email || null;
-  password = req.body.password || null;
-  role = req.body.role || null; // admin only
-  name = req.body.name || null; // admin only
 
   const trustedUser = await autenticate(req, res, passphrase, [
     "user",
     "admin"
   ]);
 
-  
+  id = req.body.id || trustedUser.id;
 
-  // try {
-  //   if (trustedUser.id != id) {
-  //     if (trustedUser.role != "admin") {
-  //       res.send(
-  //         JSON.stringify({
-  //           error: "modifying id must be you or you must be admin."
-  //         })
-  //       );
-  //     }
-  //   }
-  // } catch (err) {
-  //   res.end(JSON.stringify({ error: err.message }));
-  // }
- 
+  const liscence_number = uuidv4();
+
+  const liscenceObject = {
+    liscence: liscence_number,
+    owner_id: id,
+    limit_time_validity : DateTime.local().plus(1, "year").endOf('day').toISO(),
+    data:{}
+  };
+
+  try {
+    const liscence = await secquelizeConnection.liscence.create(liscenceObject);
+    res.end(JSON.stringify(liscenceObject));
+  } catch (err) {
+      console.log(err)
+    res.end(JSON.stringify({ error: "Liscence already exist or previously deleted" }));
+  }
 }
 
 module.exports = createLiscence;

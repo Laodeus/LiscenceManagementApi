@@ -1,12 +1,14 @@
 // module import
 const express = require("express");
 const bodyParser = require("body-parser");
+// personal import
+
 const signUpRoute = require("./routes/sign-up");
 const loginRoute = require("./routes/login");
 const deleteUserRoute = require("./routes/delete-user");
 const modifyUserRoute = require("./routes/modify-user");
-// personal import
-const authentification = require("./auth/authverif");
+
+const createLiscenceRoute = require("./routes/create-licence");
 
 //init
 const app = express();
@@ -20,8 +22,7 @@ app.post("/login",urlParse, loginRoute); // login routes
 app.delete("/user",urlParse, deleteUserRoute); // paranoid user delete with admin right
 app.put("/user",urlParse, modifyUserRoute); // user modification with admin right
 
-
-
+app.post("/liscence", urlParse, createLiscenceRoute); // new user routes
 
 
 app.listen(3000, () => {
