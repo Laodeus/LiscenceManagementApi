@@ -52,7 +52,7 @@ const Licence = sequelize.define("Licence", {
     primaryKey: true,
     autoIncrement: true
   },
-  licence: {
+  liscence: {
     type: Sequelize.STRING,
     allowNull: false,
     primaryKey: true
@@ -83,7 +83,7 @@ User.sync({ force: true }).then(() => {
 Licence.sync({ force: true }).then(() => {
   // Now the `users` table in the database corresponds to the model definition
   return Licence.create({
-    licence: "123456789-123456789-123456789",
+    liscence: "123456789-123456789-123456789",
     owner_id: "1",
     limit_time_validity: "22-10-2019ddd",
     data: {

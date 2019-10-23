@@ -12,6 +12,7 @@ const indexPageRoute = require("./routes/index-page");
 
 
 const createLiscenceRoute = require("./routes/create-licence");
+const listLiscenceRoute = require("./routes/list-licence");
 
 //init
 const app = express();
@@ -26,7 +27,8 @@ app.post("/login",urlParse, loginRoute); // login routes
 app.delete("/user",urlParse, deleteUserRoute); // paranoid user delete with admin right
 app.put("/user",urlParse, modifyUserRoute); // user modification with admin right
 
-app.post("/liscence", urlParse, createLiscenceRoute); // new user routes
+app.post("/liscence", urlParse, createLiscenceRoute); // new liscence routes
+app.get("/liscence", urlParse, listLiscenceRoute); // new liscence routes
 
 
 app.listen(port, () => {
