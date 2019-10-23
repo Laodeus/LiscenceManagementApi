@@ -7,6 +7,8 @@ const signUpRoute = require("./routes/sign-up");
 const loginRoute = require("./routes/login");
 const deleteUserRoute = require("./routes/delete-user");
 const modifyUserRoute = require("./routes/modify-user");
+const indexPageRoute = require("./routes/index-page");
+
 
 const createLiscenceRoute = require("./routes/create-licence");
 
@@ -16,6 +18,7 @@ const jsonParse = bodyParser.json();
 const urlParse = bodyParser.urlencoded({ extended: true })
 
 
+app.get("/", indexPageRoute); // new user routes
 
 app.post("/user", urlParse, signUpRoute); // new user routes
 app.post("/login",urlParse, loginRoute); // login routes
