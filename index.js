@@ -14,11 +14,14 @@ const urlParse = bodyParser.urlencoded({ extended: true })
 
 
 
-app.post("/signup", urlParse, signUpRoute);
-// app.post("/login", loginRoute);
-// app.post("/login/:id/", deleteUserRoute);
+app.post("/user", urlParse, signUpRoute);
+app.get("/user",urlParse, loginRoute);
+app.delete("/user",urlParse,jsonParse, deleteUserRoute)
+
+
+
 
 app.listen(3000, () => {
   console.clear();
   console.log("Here we go");
-});
+}); 
