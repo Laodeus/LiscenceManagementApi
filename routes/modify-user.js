@@ -7,7 +7,7 @@ const modifyUser = async (req, res, next) => {
   email = req.body.email || null;
   password = req.body.password || null;
   role = req.body.role || null; // admin only
-  name = req.body.name || null; // admin only
+  name = req.body.name || null;
 
   try {
     if (!id) {
@@ -79,6 +79,6 @@ const modifyUser = async (req, res, next) => {
   } catch (err) {
     res.end(JSON.stringify({ error: err.message }));
   }
-};
+}
 
 module.exports = modifyUser;

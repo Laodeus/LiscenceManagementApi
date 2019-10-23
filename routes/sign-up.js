@@ -38,6 +38,6 @@ const signUp = async (req, res, next) => {
       console.log(err)
     res.end(JSON.stringify({ error: "account already exist or previously deleted" }));
   }
-};
+}
 
 module.exports = signUp;

@@ -52,5 +52,5 @@ const Authverif = async (req, res, passphrase, role) => {
       })
     );
   }
-};
+}
 module.exports = Authverif;

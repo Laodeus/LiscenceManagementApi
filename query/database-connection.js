@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize");
-const databaseurl = process.env.DATABASEURL || "postgres://postgres:root@localhost:5432/mongo3d";
+const databaseurl = process.env.DATABASE_URL || "postgres://postgres:root@localhost:5432/mongo3d";
 const sequelize = new Sequelize(
     databaseurl
 );
@@ -64,6 +64,9 @@ const Licence = sequelize.define("Licence", {
   limit_time_validity: {
     type: Sequelize.STRING,
     allowNull: false
+  },
+  data: {
+    type: Sequelize.JSONB,
   }
 });
 
@@ -75,19 +78,24 @@ User.sync({ force: true }).then(() => {
     password: "0000",
     role: "admin"
   });
-});
+})
 
 Licence.sync({ force: true }).then(() => {
   // Now the `users` table in the database corresponds to the model definition
   return Licence.create({
     licence: "123456789-123456789-123456789",
     owner_id: "1",
-    limit_time_validity: "22-10-2019ddd" 
+    limit_time_validity: "22-10-2019ddd",
+    data: {
+      preferedPersonality: "Lady Diana",
+      birthDate : "1 juillet 1961",
+      deathDate : "31 août 1997"
+    }
   });
-});
+})
 
 module.exports = {
     sequelize,
     User,
     Licence
-};
+}

@@ -34,6 +34,6 @@ const login = async (req, res, next) => {
   } else {
     res.end(JSON.stringify({ error: "Login failed" }));
   }
-};
+}
 
 module.exports = login;
