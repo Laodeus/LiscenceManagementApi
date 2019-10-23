@@ -23,7 +23,7 @@ const signUp = async (req, res, next) => {
     const user = await secquelizeConnection.User.create({
       name: name,
       email: email,
-      role: "user",
+      role: "user", 
       password: password
     });
 

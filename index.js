@@ -14,9 +14,9 @@ const urlParse = bodyParser.urlencoded({ extended: true })
 
 
 
-app.post("/user", urlParse, signUpRoute);
-app.get("/user",urlParse, loginRoute);
-app.delete("/user",urlParse,jsonParse, deleteUserRoute)
+app.post("/user", urlParse, signUpRoute); // new user routes
+app.post("/login",urlParse, loginRoute); // login routes
+app.delete("/user",urlParse,jsonParse, deleteUserRoute); // paranoid user delete
 
 
 

@@ -2,9 +2,8 @@ const secquelizeConnection = require("./../query/database-connection");
 const jwt = require("jsonwebtoken");
 const passphrase = process.env.passphrase || "maPassphraseSuperSecure";
 
-const login = async (req, res, next) => {
-  console.clear();
 
+const login = async (req, res, next) => {
   email = req.body.email || null;
   password = req.body.password || null;
   try {
@@ -22,7 +21,6 @@ const login = async (req, res, next) => {
   });
 
   if (user) {
-    console.log(passphrase);
     const token = jwt.sign({ id: user.dataValues.id }, passphrase);
     const userObject = {
       id: user.dataValues.id,
