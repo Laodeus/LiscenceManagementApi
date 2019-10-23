@@ -25,9 +25,11 @@ const listLiscence = async (req, res, next) => {
   }
 
   let request = {};
+  let countRequest = {};
 
   if (id) {
     request = Object.assign(request, { where: { owner_id: id } });
+    countRequest = Object.assign(countRequest, { where: { owner_id: id } });;
   }
   if (offset) {
     request = Object.assign(request, { offset: offset });
@@ -37,7 +39,16 @@ const listLiscence = async (req, res, next) => {
   }
 
   const list = await secquelizeConnection.Licence.findAll(request);
-  res.end(JSON.stringify(list));
+
+  
+  const count = await secquelizeConnection.Licence.count(request);
+  
+  const finalObject = Object.assign(list,{count:count});
+
+  console.log(finalObject)
+  console.log(JSON.stringify(finalObject))
+
+  res.end(JSON.stringify(finalObject));
 }
 
 
