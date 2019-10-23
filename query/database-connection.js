@@ -77,7 +77,7 @@ User.sync({ force: true }).then(() => {
   });
 });
 
-Licence.sync({ force: false }).then(() => {
+Licence.sync({ force: true }).then(() => {
   // Now the `users` table in the database corresponds to the model definition
   return Licence.create({
     licence: "123456789-123456789-123456789",

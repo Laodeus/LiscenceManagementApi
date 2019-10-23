@@ -48,7 +48,7 @@ const Authverif = async (req, res, passphrase, role) => {
   } else {
     res.end(
       JSON.stringify({
-        error: "Error while decoding token. Token must be invalid."
+        error: "Error while decoding token. Token must be invalid or user do not exist anymore."
       })
     );
   }

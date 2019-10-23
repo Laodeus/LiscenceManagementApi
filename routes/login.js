@@ -27,6 +27,9 @@ const login = async (req, res, next) => {
       email: user.dataValues.email,
       token: token
     };
+    if(user.role == "deleted"){
+      res.end(JSON.stringify({ error: "account deleted Contact an administrator to reactive your account." }));
+    }
     res.end(JSON.stringify(userObject));
   } else {
     res.end(JSON.stringify({ error: "Login failed" }));
