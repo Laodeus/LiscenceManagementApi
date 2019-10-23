@@ -1,6 +1,7 @@
 // module import
 const express = require("express");
 const bodyParser = require("body-parser");
+const port = process.env.PORT || 3000;
 // personal import
 
 const signUpRoute = require("./routes/sign-up");
@@ -28,7 +29,7 @@ app.put("/user",urlParse, modifyUserRoute); // user modification with admin righ
 app.post("/liscence", urlParse, createLiscenceRoute); // new user routes
 
 
-app.listen(3000, () => {
+app.listen(port, () => {
   console.clear();
   console.log("Here we go");
 }); 
