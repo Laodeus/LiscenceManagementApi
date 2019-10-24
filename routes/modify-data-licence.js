@@ -56,11 +56,8 @@ const modifyData = async (req, res, next) => {
     let returnDeleted = [];
 
     try {
-      console.clear();
-      console.log("above")
       ParsedDelete = JSON.parse(deletedata);
       ParsedDelete = Array.from(ParsedDelete);
-      console.log(ParsedDelete)
       if (!Array.isArray(ParsedDelete)) {
         throw new Error("invalid array");
       }

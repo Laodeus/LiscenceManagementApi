@@ -1,4 +1,5 @@
 const Sequelize = require("sequelize");
+const bcrypt = require("./../auth/crypt")
 const databaseurl = process.env.DATABASE_URL || "postgres://postgres:root@localhost:5432/mongo3d";
 const sequelize = new Sequelize(
     databaseurl
@@ -75,11 +76,11 @@ const Licence = sequelize.define("Licence", {
 });
 
 // Note: using `force: true` will drop the table if it already exists
-User.sync({ force: true }).then(() => {
+User.sync({ force: true }).then(async () => {
   // Now the `users` table in the database corresponds to the model definition
   return User.create({
     email: "admin@admin.admin",
-    password: "0000",
+    password: await bcrypt.crypt("ThisIsNotSecureEraseMeQuickPlease"),
     role: "admin"
   });
 })

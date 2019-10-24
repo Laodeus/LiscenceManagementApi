@@ -24,8 +24,6 @@ const modifyUser = async (req, res, next) => {
     "admin"
   ]);
 
-  console.log(trustedUser)
-
   try {
     if (trustedUser.id != id) {
       if (trustedUser.role != "admin") {
@@ -74,7 +72,7 @@ const modifyUser = async (req, res, next) => {
         }
       }
     );
-    console.log(modification[1]);
+    
     if (modification[0] == 0) {
       res.send(JSON.stringify({ error: `User ${id} do not exist` }));
       res.end(JSON.stringify(modificationobject));

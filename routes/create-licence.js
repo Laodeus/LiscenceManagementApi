@@ -16,7 +16,6 @@ const createLiscence = async (req, res, next) => {
   const user = await secquelizeConnection.User.findOne({
     where: { id:id }
   });
-  console.log()
   try {
     if(!user){
       throw new Error("The id provided is not linked to an existing account");

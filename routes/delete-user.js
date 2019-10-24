@@ -27,7 +27,6 @@ const deleteUser = async (req, res, next) => {
           }
         }
       );
-      console.log(deletion[1])
       if(deletion[0] == 0){
 
         res.send(

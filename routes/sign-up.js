@@ -19,12 +19,6 @@ const signUp = async (req, res, next) => {
     res.end(JSON.stringify({ error: err.message }));
   }
 
-  try{
-}catch(err){
-  console.log(err)
-}
-
-
   try {
     const user = await secquelizeConnection.User.create({
       name: name,
@@ -41,7 +35,6 @@ const signUp = async (req, res, next) => {
     };
     res.end(JSON.stringify(userObject));
   } catch (err) {
-      console.log(err)
     res.end(JSON.stringify({ error: "account already exist or previously deleted" }));
   }
 }
