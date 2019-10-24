@@ -105,8 +105,15 @@ clear is the first params, so it will be effective before add and delete.
 
 if a delete array is provided, it will search the key provided in the data object, if the key exist, it will delete the pair key-value.
 delete is the second params to take it's effect.
+your key must be encapsulated betwen double quotes in the array
+example:["key","key2"]
 
 if add is provided, the object will be added to the existing key.
 if a key already exist, it will overide it's value to the value provided.
-
+your key must be encapsulated betwen double quotes
+example: 
+add : { "key" : "value"} 
+add : { "key" : true} 
+add : { "key" : 3} 
+add : { "key" : 5.68} 
  

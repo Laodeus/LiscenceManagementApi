@@ -58,7 +58,7 @@ const Licence = sequelize.define("Licence", {
     primaryKey: true
   },
   owner_id: {
-    type: Sequelize.STRING,
+    type: Sequelize.INTEGER,
     allowNull: false
   },
   limit_time_validity: {
