@@ -43,7 +43,7 @@ const listLiscence = async (req, res, next) => {
   
   const count = await secquelizeConnection.Licence.count(request);
   
-  const finalObject = Object.assign(list,{count:count});
+  const finalObject = Object.assign({list:list},{count:count});
 
   console.log(finalObject)
   console.log(JSON.stringify(finalObject))
