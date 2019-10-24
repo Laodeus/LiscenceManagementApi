@@ -86,3 +86,27 @@ if an id and an offset is provided, the list will be if an id is provided, the l
 starting a the position of the offset provided.  
 
 if a limit is provided, the number of entries returned will max the number provided.  
+
+**put /liscence**  
+***display, add delete and clear the data linked to the licence***  
+
+****params****   
+id : int mandatory  
+clear : boolean optional (default false) 
+delete : array optional
+add : object optional
+
+
+this route is only reachable by an admin or the user himself.
+if only an id is provided, will return the data object without any modification
+
+if clear is setted to true, it will clear the object.
+clear is the first params, so it will be effective before add and delete.
+
+if a delete array is provided, it will search the key provided in the data object, if the key exist, it will delete the pair key-value.
+delete is the second params to take it's effect.
+
+if add is provided, the object will be added to the existing key.
+if a key already exist, it will overide it's value to the value provided.
+
+ 
