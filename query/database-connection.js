@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 const bcrypt = require("./../auth/crypt")
-const databaseurl = process.env.DATABASE_URL || "postgres://postgres:root@localhost:5432/mongo3d";
+const databaseurl = process.env.DATABASE_URL;
 const sequelize = new Sequelize(
     databaseurl
 );
@@ -76,7 +76,7 @@ const Licence = sequelize.define("Licence", {
 });
 
 // Note: using `force: true` will drop the table if it already exists
-User.sync({ force: true }).then(async () => {
+User.sync({ force: false }).then(async () => {
   // Now the `users` table in the database corresponds to the model definition
   return User.create({
     email: "admin@admin.admin",
@@ -85,20 +85,8 @@ User.sync({ force: true }).then(async () => {
   });
 })
 
-Licence.sync({ force: true }).then(() => {
-  // Now the `users` table in the database corresponds to the model definition
-  return Licence.create({
-    liscence: "123456789-123456789-123456789",
-    owner_id: "1",
-    limit_time_validity: "22-10-2019ddd",
-    status:"active",
-    data: {
-      preferedPersonality: "Lady Diana",
-      birthDate : "1 juillet 1961",
-      deathDate : "31 août 1997"
-    }
-  });
-})
+Licence.sync({ force: false })
+
 
 module.exports = {
     sequelize,

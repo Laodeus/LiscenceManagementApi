@@ -1,6 +1,6 @@
 const secquelizeConnection = require("./../query/database-connection");
 const jwt = require("jsonwebtoken");
-const passphrase = process.env.passphrase || "maPassphraseSuperSecure";
+const passphrase = process.env.passphrase;
 const bcrypt = require ("./../auth/crypt")
 
 

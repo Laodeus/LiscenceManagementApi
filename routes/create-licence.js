@@ -3,7 +3,7 @@ const { DateTime } = require("luxon");
 
 const secquelizeConnection = require("./../query/database-connection");
 const autenticate = require("./../auth/authverif");
-const passphrase = process.env.passphrase || "maPassphraseSuperSecure";
+const passphrase = process.env.passphrase;
 
 const createLiscence = async (req, res, next) => {
   const trustedUser = await autenticate(req, res, passphrase, [

@@ -1,6 +1,6 @@
 const secquelizeConnection = require("./../query/database-connection");
 const autenticate = require("./../auth/authverif");
-const passphrase = process.env.passphrase || "maPassphraseSuperSecure";
+const passphrase = process.env.passphrase;
 
 const deleteUser = async (req, res, next) => {
   id = req.body.id || null;

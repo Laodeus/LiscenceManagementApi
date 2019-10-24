@@ -1,5 +1,4 @@
 const jsonWebToken = require("jsonwebtoken");
-const passphrase = process.env.passphrase || "maPassphraseSuperSecure";
 const sequelmiseConnectionObject = require("./../query/database-connection");
 
 const Authverif = async (req, res, passphrase, role) => {
