@@ -1,11 +1,13 @@
 const secquelizeConnection = require("./../query/database-connection");
 const passphrase = process.env.passphrase || "maPassphraseSuperSecure";
+const bcrypt = require ("./../auth/crypt")
+
 const jwt = require("jsonwebtoken");
 const signUp = async (req, res, next) => {
-  console.clear();
   name = req.body.name || null;
   email = req.body.email || null;
   password = req.body.password || null;
+
   try {
     if (!email) {
       throw new Error("email must be provided.");
@@ -14,17 +16,21 @@ const signUp = async (req, res, next) => {
       throw new Error("password must be provided.");
     }
   } catch (err) {
-    console.clear();
-    console.log(err);
     res.end(JSON.stringify({ error: err.message }));
   }
+
+  try{
+}catch(err){
+  console.log(err)
+}
+
 
   try {
     const user = await secquelizeConnection.User.create({
       name: name,
       email: email,
       role: "user", 
-      password: password
+      password: await bcrypt.crypt(password) 
     });
 
     const token = jwt.sign({ id: user.dataValues.id }, passphrase);

@@ -1,6 +1,8 @@
 const secquelizeConnection = require("./../query/database-connection");
 const autenticate = require("./../auth/authverif");
 const passphrase = process.env.passphrase || "maPassphraseSuperSecure";
+const bcrypt = require ("./../auth/crypt")
+
 
 const modifyUser = async (req, res, next) => {
   id = req.body.id || null;
@@ -21,6 +23,8 @@ const modifyUser = async (req, res, next) => {
     "user",
     "admin"
   ]);
+
+  console.log(trustedUser)
 
   try {
     if (trustedUser.id != id) {
@@ -52,7 +56,7 @@ const modifyUser = async (req, res, next) => {
     modificationobject = Object.assign(modificationobject, {email:email});
   }
   if (password) {
-    modificationobject = Object.assign(modificationobject, {password:password});
+    modificationobject = Object.assign(modificationobject, {password:await bcrypt.crypt(password)});
   }
   if (role) {
     modificationobject = Object.assign(modificationobject, {role:role});

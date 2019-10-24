@@ -1,6 +1,7 @@
 const secquelizeConnection = require("./../query/database-connection");
 const jwt = require("jsonwebtoken");
 const passphrase = process.env.passphrase || "maPassphraseSuperSecure";
+const bcrypt = require ("./../auth/crypt")
 
 
 const login = async (req, res, next) => {
@@ -17,10 +18,22 @@ const login = async (req, res, next) => {
     res.end(JSON.stringify({ error: err.message }));
   }
   const user = await secquelizeConnection.User.findOne({
-    where: { email: email, password: password }
+    where: { email: email}
   });
 
+
   if (user) {
+    try {
+      
+    const pswdCompare = await bcrypt.compare(password,user.password);
+    if(!pswdCompare){
+        throw new Error("login Failed");
+    }
+    
+  } catch (err) {
+    res.end(JSON.stringify({ error: err.message }));
+}
+
     const token = jwt.sign({ id: user.dataValues.id }, passphrase);
     const userObject = {
       id: user.dataValues.id,
@@ -37,3 +50,4 @@ const login = async (req, res, next) => {
 }
 
 module.exports = login;
+ 
