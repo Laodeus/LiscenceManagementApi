@@ -32,6 +32,12 @@ app.post("/liscence", urlParse, createLiscenceRoute); // new liscence routes
 app.get("/liscence", urlParse, listLiscenceRoute); // new liscence routes
 app.delete("/liscence",urlParse, deleteLiscenceRoute); // paranoid user delete with admin right
 
+// 404 handle
+app.use(function(req, res, next){
+  res.status(404);
+  indexPageRoute(req, res, next)
+});
+
 
 app.listen(port, () => {
   console.clear();
